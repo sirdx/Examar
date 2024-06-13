@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examar", "Examar\Examar.csproj", "{CD720FCC-42C2-458D-9165-29A0EEBD8D9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examar.Elements", "Examar.Elements\Examar.Elements.csproj", "{6FB41F4C-8E55-4905-B3C9-7A3E713FEFC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examar.Core", "Examar.Core\Examar.Core.csproj", "{8BE5ED06-BCAF-46FF-9D2E-B7B163607E26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examar.Tests", "Examar.Tests\Examar.Tests.csproj", "{97262009-1945-4EB5-B1C0-61EBA30724CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD720FCC-42C2-458D-9165-29A0EEBD8D9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD720FCC-42C2-458D-9165-29A0EEBD8D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD720FCC-42C2-458D-9165-29A0EEBD8D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD720FCC-42C2-458D-9165-29A0EEBD8D9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FB41F4C-8E55-4905-B3C9-7A3E713FEFC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FB41F4C-8E55-4905-B3C9-7A3E713FEFC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FB41F4C-8E55-4905-B3C9-7A3E713FEFC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FB41F4C-8E55-4905-B3C9-7A3E713FEFC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BE5ED06-BCAF-46FF-9D2E-B7B163607E26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BE5ED06-BCAF-46FF-9D2E-B7B163607E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BE5ED06-BCAF-46FF-9D2E-B7B163607E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BE5ED06-BCAF-46FF-9D2E-B7B163607E26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97262009-1945-4EB5-B1C0-61EBA30724CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97262009-1945-4EB5-B1C0-61EBA30724CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97262009-1945-4EB5-B1C0-61EBA30724CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97262009-1945-4EB5-B1C0-61EBA30724CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

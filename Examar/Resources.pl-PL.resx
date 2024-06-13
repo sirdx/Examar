@@ -1,0 +1,134 @@
+﻿<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Main_SideBar_HeaderMenu" xml:space="preserve">
+        <value>MENU</value>
+    </data>
+    <data name="Main_SideBar_HeaderPinned" xml:space="preserve">
+        <value>PRZYPIĘTE</value>
+    </data>
+    <data name="Main_SideBar_NoPinned" xml:space="preserve">
+        <value>Brak przypiętych.</value>
+    </data>
+    <data name="Main_SideBar_MenuAddons" xml:space="preserve">
+        <value>Dodatki</value>
+    </data>
+    <data name="Main_SideBar_MenuExams" xml:space="preserve">
+        <value>Egzaminy</value>
+    </data>
+    <data name="Main_SideBar_MenuHome" xml:space="preserve">
+        <value>Główna</value>
+    </data>
+    <data name="Main_SideBar_MenuSettings" xml:space="preserve">
+        <value>Ustawienia</value>
+    </data>
+    <data name="Main_SideBar_ButtonCreateExam" xml:space="preserve">
+        <value>STWÓRZ EGZAMIN</value>
+    </data>
+    <data name="Elements_Default_TextBlock_Name" xml:space="preserve">
+        <value>Blok Tekstu</value>
+    </data>
+    <data name="Elements_Default_Instruction_Name" xml:space="preserve">
+        <value>Polecenie</value>
+    </data>
+    <data name="Elements_Default_LaTeX_Name" xml:space="preserve">
+        <value>LaTeX</value>
+    </data>
+    <data name="Elements_Default_WritingArea_Name" xml:space="preserve">
+        <value>Pole Tekstowe</value>
+    </data>
+    <data name="ElementEditor_Header_Name" xml:space="preserve">
+        <value>Edytuj Element</value>
+    </data>
+    <data name="Elements_Default_LaTeX_FieldName" xml:space="preserve">
+        <value>Kod</value>
+    </data>
+    <data name="Elements_Default_LaTeX_FieldDescription" xml:space="preserve">
+        <value>Kod LaTeX.</value>
+    </data>
+    <data name="Elements_Default_WritingArea_FieldName" xml:space="preserve">
+        <value>Linijki</value>
+    </data>
+    <data name="Elements_Default_WritingArea_FieldDescription" xml:space="preserve">
+        <value>Ilość linijek na odpowiedź.</value>
+    </data>
+    <data name="Elements_Default_TextBlock_FieldName" xml:space="preserve">
+        <value>Zawartość</value>
+    </data>
+    <data name="Elements_Default_Space_Name" xml:space="preserve">
+        <value>Przestrzeń</value>
+    </data>
+    <data name="Elements_Default_Space_FieldName" xml:space="preserve">
+        <value>Wysokość</value>
+    </data>
+    <data name="Elements_Default_Space_FieldDescription" xml:space="preserve">
+        <value>Wysokość pustej przestrzeni (w calach).</value>
+    </data>
+    <data name="Elements_Default_Space_Description" xml:space="preserve">
+        <value>Pozostawia pustą przestrzeń.</value>
+    </data>
+    <data name="Elements_Default_Instruction_FieldName" xml:space="preserve">
+        <value>Zawartość</value>
+    </data>
+    <data name="Elements_Default_Instruction_FieldDescription" xml:space="preserve">
+        <value>Zawartość polecenia.</value>
+    </data>
+    <data name="Elements_Default_Instruction_Description" xml:space="preserve">
+        <value>Objaśnia zadanie.</value>
+    </data>
+    <data name="Elements_Default_WritingArea_Description" xml:space="preserve">
+        <value>Daje przestrzeń na odpowiedź.</value>
+    </data>
+    <data name="ElementSelector_Header_Name" xml:space="preserve">
+        <value>Wybierz Element</value>
+    </data>
+    <data name="Elements_Default_TextBlock_Description" xml:space="preserve">
+        <value>Wyświetla tekst.</value>
+    </data>
+    <data name="Elements_Default_TextBlock_FieldDescription" xml:space="preserve">
+        <value>Zawartość bloku tekstowego.</value>
+    </data>
+    <data name="Creator_Header_Name" xml:space="preserve">
+        <value>Stwórz Egzamin</value>
+    </data>
+    <data name="Creator_Exam_Title" xml:space="preserve">
+        <value>TYTUŁ</value>
+    </data>
+    <data name="Creator_Exam_FilePath" xml:space="preserve">
+        <value>ŚCIEŻKA PLIKU</value>
+    </data>
+    <data name="Creator_Exam_EditDetails" xml:space="preserve">
+        <value>EDYTUJ SZCZEGÓŁY</value>
+    </data>
+    <data name="Creator_Exam_AddElement" xml:space="preserve">
+        <value>DODAJ ELEMENT</value>
+    </data>
+    <data name="Creator_Exam_Elements" xml:space="preserve">
+        <value>ELEMENTY</value>
+    </data>
+    <data name="Creator_Exam_Element_Type" xml:space="preserve">
+        <value>Typ</value>
+    </data>
+    <data name="Creator_Exam_Element_Preview" xml:space="preserve">
+        <value>Podgląd</value>
+    </data>
+    <data name="Creator_Exam_Cancel" xml:space="preserve">
+        <value>ANULUJ</value>
+    </data>
+    <data name="Creator_Exam_Export" xml:space="preserve">
+        <value>EKSPORTUJ</value>
+    </data>
+    <data name="Creator_Exam_Save" xml:space="preserve">
+        <value>ZAPISZ</value>
+    </data>
+</root>

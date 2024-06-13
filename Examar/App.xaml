@@ -1,0 +1,41 @@
+﻿<Application x:Class="Examar.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Examar.ViewModels"
+             xmlns:viewHome="clr-namespace:Examar.Views.Home"
+             xmlns:viewExams="clr-namespace:Examar.Views.Exams"
+             xmlns:viewSettings="clr-namespace:Examar.Views.Settings"
+             xmlns:viewCreator="clr-namespace:Examar.Views.Creator"
+             xmlns:viewElementSelector="clr-namespace:Examar.Views.ElementSelector"
+             xmlns:viewElementEditor="clr-namespace:Examar.Views.ElementEditor"
+             xmlns:converters="clr-namespace:Examar.Converters">
+    <Application.Resources>
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+                <viewHome:HomeView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ExamsViewModel}">
+                <viewExams:ExamsView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+                <viewSettings:SettingsView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:CreatorViewModel}">
+                <viewCreator:CreatorView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ElementSelectorViewModel}">
+                <viewElementSelector:ElementSelectorView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ElementEditorViewModel}">
+                <viewElementEditor:ElementEditorView />
+            </DataTemplate>
+            
+            <converters:StringResourceConverter x:Key="StringResourceConverter"/>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/SideBarButton.xaml"/>
+                <ResourceDictionary Source="Styles/PlainButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+         </ResourceDictionary>
+    </Application.Resources>
+</Application>
