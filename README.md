@@ -18,9 +18,9 @@
         <b>⚠️ IN DEVELOPMENT ⚠️</b>
         <br />
         <br />
-        <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug">Report Bug</a>
+        <a href="https://github.com/sirdx/Examar/issues/new?labels=bug">Report Bug</a>
         ·
-        <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=enhancement">Request Feature</a>
+        <a href="https://github.com/sirdx/Examar/issues/new?labels=enhancement">Request Feature</a>
     </p>
 </div>
 
