@@ -35,6 +35,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/SideBarButton.xaml"/>
                 <ResourceDictionary Source="Styles/PlainButton.xaml"/>
+                <ResourceDictionary Source="Styles/PlainTextBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
          </ResourceDictionary>
     </Application.Resources>

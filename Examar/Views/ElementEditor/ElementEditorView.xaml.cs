@@ -69,7 +69,10 @@ public partial class ElementEditorView
         {
             case ElementMetadata.FieldType.Text:
             {
-                var textBox = new TextBox();
+                var textBox = new TextBox
+                {
+                    Style = FindResource("PlainTextBox") as Style
+                };
                 textBox.SetBinding(TextBox.TextProperty, binding);
                 stackPanel.Children.Add(textBox);
                 break;

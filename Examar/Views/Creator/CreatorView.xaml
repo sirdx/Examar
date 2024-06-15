@@ -12,70 +12,82 @@
              d:DataContext="{d:DesignInstance vm:CreatorViewModel, IsDesignTimeCreatable=True}">
     <Border Padding="40">
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <StackPanel Grid.Column="0" 
-                        Grid.Row="0"
-                        Margin="0,0,0,30">
-                <TextBlock Text="{x:Static root:Resources.Creator_Header_Name}"
+            <Grid Grid.Row="0"
+                  Margin="0,0,0,30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="0"
+                           Grid.ColumnSpan="3"
+                           Text="{x:Static root:Resources.Creator_Header_Name}"
                            Foreground="#CFFFFFFF"
                            FontWeight="Bold"
                            FontSize="18"
                            Margin="0,0,0,30" />
-                <TextBlock Text="{x:Static root:Resources.Creator_Exam_Title}"
-                           Foreground="#CFFFFFFF"
-                           FontWeight="Medium"
-                           FontSize="10"
-                           Margin="0,0,0,5" />
-                <TextBox Text="{Binding Title}"
-                         FontSize="18"
-                         Margin="0,0,0,10"/>
-                <TextBlock Text="{x:Static root:Resources.Creator_Exam_FilePath}"
-                           Foreground="#CFFFFFFF"
-                           FontWeight="Medium"
-                           FontSize="10"
-                           Margin="0,0,0,5" />
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" 
-                             Text="{Binding FilePath}"
-                             FontSize="18"
-                             Margin="0,0,10,0"/>
-                    <Button Grid.Column="1" 
-                            Content="..."
-                            Width="25"
-                            Command="{Binding SelectFilePathCommand}"/>
-                </Grid>
-            </StackPanel>
-            <StackPanel Grid.Column="1" 
-                        Grid.Row="0"
-                        Margin="0,0,0,30"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Bottom">
-                <Button Content="{x:Static root:Resources.Creator_Exam_EditDetails}"
-                        IsEnabled="False"
-                        Width="150"
-                        Style="{StaticResource PlainButton}"
-                        Command="{Binding SaveExamCommand}" />  
-                <Button Content="{x:Static root:Resources.Creator_Exam_AddElement}"
-                        Margin="0,10,0,0"
-                        Width="150"
-                        Style="{StaticResource PlainButton}"
-                        Command="{Binding NavigateElementSelectorCommand}" />  
-            </StackPanel>
-            <StackPanel Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        Grid.Row="1">
+                <StackPanel Grid.Column="0" 
+                            Grid.Row="1">
+                    <TextBlock Text="{x:Static root:Resources.Creator_Exam_Title}"
+                               Foreground="#CFFFFFFF"
+                               FontWeight="Medium"
+                               FontSize="10"
+                               Margin="0,0,0,5" />
+                    <TextBox Text="{Binding Title}"
+                             Style="{StaticResource PlainTextBox}"
+                             Margin="0,0,0,15"/>
+                    <TextBlock Text="{x:Static root:Resources.Creator_Exam_FilePath}"
+                               Foreground="#CFFFFFFF"
+                               FontWeight="Medium"
+                               FontSize="10"
+                               Margin="0,0,0,5" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" 
+                                 Text="{Binding FilePath}"
+                                 Style="{StaticResource PlainTextBox}"
+                                 Margin="0,0,10,0"/>
+                        <Button Grid.Column="1" 
+                                VerticalAlignment="Center"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Command="{Binding SelectFilePathCommand}">
+                            <iconPacks:PackIconMaterial Kind="Magnify"
+                                                        Foreground="White"
+                                                        Width="18" />
+                        </Button>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Grid.Column="2"
+                            Grid.Row="1"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom">
+                    <Button Content="{x:Static root:Resources.Creator_Exam_EditDetails}"
+                            IsEnabled="False"
+                            Width="150"
+                            Style="{StaticResource PlainButton}"
+                            Command="{Binding SaveExamCommand}" />  
+                    <Button Content="{x:Static root:Resources.Creator_Exam_AddElement}"
+                            Margin="0,10,0,0"
+                            Width="150"
+                            Style="{StaticResource PlainButton}"
+                            Command="{Binding NavigateElementSelectorCommand}" />  
+                </StackPanel>
+            </Grid>
+            <StackPanel Grid.Row="1">
                 <TextBlock Text="{x:Static root:Resources.Creator_Exam_Elements}"
                            Foreground="#CFFFFFFF"
                            FontWeight="Medium"
@@ -147,9 +159,7 @@
                     </DataGrid.ContextMenu>
                 </DataGrid>
             </StackPanel>
-            <StackPanel Grid.Column="0" 
-                        Grid.ColumnSpan="2" 
-                        Grid.Row="2"
+            <StackPanel Grid.Row="2"
                         Orientation="Horizontal"
                         Margin="0,30,0,0"
                         HorizontalAlignment="Right">
