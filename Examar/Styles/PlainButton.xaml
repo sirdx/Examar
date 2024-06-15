@@ -26,7 +26,7 @@
                 <Setter Property="Background" Value="CornflowerBlue"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="LightSkyBlue"/>
+                <Setter Property="Background" Value="#5F1E90FF"/>
             </Trigger>
         </Style.Triggers>
     </Style>
