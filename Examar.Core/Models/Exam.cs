@@ -12,6 +12,7 @@ public sealed class Exam
     [JsonIgnore]
     public string? FilePath { get; set; }
     
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public Theme? DefaultTheme { get; set; }
 
     [JsonIgnore]
