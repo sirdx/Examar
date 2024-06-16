@@ -3,13 +3,13 @@ using System.Windows.Controls;
 
 namespace Examar.Utils;
 
-public static class TextBlockLinesBehaviour
+public static class TextBlockLinesBehavior
 {
     public static readonly DependencyProperty MaxLinesProperty =
         DependencyProperty.RegisterAttached(
             "MaxLines",
             typeof(int),
-            typeof(TextBlockLinesBehaviour),
+            typeof(TextBlockLinesBehavior),
             new PropertyMetadata(default(int), OnMaxLinesPropertyChangedCallback));
 
     public static void SetMaxLines(DependencyObject element, int value)
@@ -36,7 +36,7 @@ public static class TextBlockLinesBehaviour
         DependencyProperty.RegisterAttached(
             "MinLines",
             typeof(int),
-            typeof(TextBlockLinesBehaviour),
+            typeof(TextBlockLinesBehavior),
             new PropertyMetadata(default(int), OnMinLinesPropertyChangedCallback));
 
     public static void SetMinLines(DependencyObject element, int value)

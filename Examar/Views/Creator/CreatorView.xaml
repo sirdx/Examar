@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dd="urn:gong-wpf-dragdrop"
              xmlns:vm="clr-namespace:Examar.ViewModels"
              xmlns:utils="clr-namespace:Examar.Utils"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
@@ -20,9 +21,8 @@
             <Grid Grid.Row="0"
                   Margin="0,0,0,30">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -30,7 +30,6 @@
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Column="0"
                            Grid.Row="0"
-                           Grid.ColumnSpan="3"
                            Text="{x:Static root:Resources.Creator_Header_Name}"
                            Foreground="#CFFFFFFF"
                            FontWeight="Bold"
@@ -71,7 +70,7 @@
                         </Button>
                     </Grid>
                 </StackPanel>
-                <StackPanel Grid.Column="2"
+                <StackPanel Grid.Column="1"
                             Grid.Row="1"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Bottom">
@@ -87,78 +86,116 @@
                             Command="{Binding NavigateElementSelectorCommand}" />  
                 </StackPanel>
             </Grid>
-            <StackPanel Grid.Row="1">
-                <TextBlock Text="{x:Static root:Resources.Creator_Exam_Elements}"
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" 
+                           Text="{x:Static root:Resources.Creator_Exam_Elements}"
                            Foreground="#CFFFFFFF"
                            FontWeight="Medium"
                            FontSize="10"
                            Margin="0,0,0,5" />
-                <DataGrid AutoGenerateColumns="False"
-                          SelectionMode="Single"
-                          SelectionUnit="FullRow"
-                          BorderThickness="0"
-                          Background="Transparent"
-                          ItemsSource="{Binding Elements}"
-                          SelectedItem="{Binding SelectedElement}"
-                          IsSynchronizedWithCurrentItem="True"
-                          LoadingRow="DataGrid_OnLoadingRow">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" 
-                                            Width="Auto" 
-                                            IsReadOnly="True" 
-                                            Binding="{Binding Id}"/>
-                        <DataGridTextColumn Header="{x:Static root:Resources.Creator_Exam_Element_Type}" 
-                                            Width="Auto"
-                                            IsReadOnly="True" 
-                                            Binding="{Binding Metadata.Name, Converter={StaticResource StringResourceConverter}}"/>
-                        <DataGridTemplateColumn Header="{x:Static root:Resources.Creator_Exam_Element_Preview}" 
-                                                IsReadOnly="True" 
-                                                Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Preview}"
-                                               TextWrapping="Wrap"
-                                               TextTrimming="CharacterEllipsis"
-                                               utils:TextBlockLinesBehaviour.MaxLines="1"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                    <DataGrid.InputBindings>
-                        <MouseBinding MouseAction="LeftDoubleClick"
-                                      Command="{Binding EditElementCommand}"
-                                      CommandParameter="{Binding Elements/}"/>
-                    </DataGrid.InputBindings>
-                    <DataGrid.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="Edit" 
-                                      Command="{Binding EditElementCommand}"
-                                      CommandParameter="{Binding Elements/}">
-                                <MenuItem.Icon>
-                                    <iconPacks:PackIconMaterial Kind="Pencil"
-                                                                Foreground="DodgerBlue"/>
-                                </MenuItem.Icon>
-                            </MenuItem>
-                            <MenuItem Header="Duplicate" 
-                                      Command="{Binding DuplicateElementCommand}"
-                                      CommandParameter="{Binding Elements/}">
-                                <MenuItem.Icon>
-                                    <iconPacks:PackIconMaterial Kind="ContentDuplicate"
-                                                                Foreground="DarkOrange"/>
-                                </MenuItem.Icon>
-                            </MenuItem>
-                            <MenuItem Header="Remove"
-                                      Command="{Binding RemoveElementCommand}"
-                                      CommandParameter="{Binding Elements/}">
-                                <MenuItem.Icon>
-                                    <iconPacks:PackIconMaterial Kind="Close"
-                                                                Foreground="DarkRed"/>
-                                </MenuItem.Icon>
-                            </MenuItem>
-                        </ContextMenu>
-                    </DataGrid.ContextMenu>
-                </DataGrid>
-            </StackPanel>
+                <ScrollViewer Grid.Row="1"
+                              x:Name="ElementsScrollViewer"
+                              VerticalScrollBarVisibility="Auto">
+                    <ItemsControl x:Name="ElementsItemsControl"
+                                  ItemsSource="{Binding Elements}"
+                                  dd:DragDrop.IsDragSource="True"
+                                  dd:DragDrop.IsDropTarget="True"
+                                  dd:DragDrop.DropTargetScrollViewer="{x:Reference ElementsScrollViewer}"
+                                  dd:DragDrop.UseDefaultDragAdorner="True">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="5"
+                                        Background="#0FFFFFFF"
+                                        Padding="15,10"
+                                        Cursor="SizeAll"
+                                        Margin="0,0,0,5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0"
+                                                    Orientation="Horizontal">
+                                            <iconPacks:PackIconMaterial Kind="{Binding Metadata.Icon}"
+                                                                        Foreground="IndianRed"
+                                                                        Width="18"
+                                                                        VerticalAlignment="Center"
+                                                                        Margin="0,0,15,0"/>
+                                            <StackPanel VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Metadata.Name, Converter={StaticResource StringResourceConverter}}"
+                                                           Foreground="#AFFFFFFF"
+                                                           FontWeight="Bold"
+                                                           FontSize="14"/>
+                                                <TextBlock Text="{Binding Preview}"
+                                                           utils:TextBlockLinesBehavior.MaxLines="1"
+                                                           Foreground="#8FFFFFFF"
+                                                           FontSize="10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1"
+                                                    Orientation="Horizontal"
+                                                    VerticalAlignment="Center">
+                                            <Button VerticalAlignment="Center"
+                                                    Background="Transparent"
+                                                    BorderThickness="0"
+                                                    Margin="0,0,10,0"
+                                                    Cursor="Hand"
+                                                    Command="{Binding DataContext.EditElementCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                    CommandParameter="{Binding .}">
+                                                <iconPacks:PackIconMaterial Kind="Pencil"
+                                                                            Foreground="White"
+                                                                            Width="18" />
+                                            </Button>
+                                            <Button VerticalAlignment="Center"
+                                                    Background="Transparent"
+                                                    BorderThickness="0"
+                                                    Cursor="Hand"
+                                                    utils:ContextMenuLeftClickBehavior.IsLeftClickEnabled="True"
+                                                    ContextMenuService.IsEnabled="False">
+                                                <iconPacks:PackIconMaterial Kind="DotsVertical"
+                                                                            Foreground="White"
+                                                                            Width="18" />
+                                                <Button.ContextMenu>
+                                                    <ContextMenu>
+                                                        <MenuItem Header="Edit" 
+                                                                  Command="{Binding DataContext.EditElementCommand, Source={x:Reference ElementsItemsControl}}"
+                                                                  CommandParameter="{Binding .}">
+                                                            <MenuItem.Icon>
+                                                                <iconPacks:PackIconMaterial Kind="Pencil"
+                                                                    Foreground="DodgerBlue"/>
+                                                            </MenuItem.Icon>
+                                                        </MenuItem>
+                                                        <MenuItem Header="Duplicate" 
+                                                                  Command="{Binding DataContext.DuplicateElementCommand, Source={x:Reference ElementsItemsControl}}"
+                                                                  CommandParameter="{Binding .}">
+                                                            <MenuItem.Icon>
+                                                                <iconPacks:PackIconMaterial Kind="ContentDuplicate"
+                                                                    Foreground="DarkOrange"/>
+                                                            </MenuItem.Icon>
+                                                        </MenuItem>
+                                                        <MenuItem Header="Remove"
+                                                                  Command="{Binding DataContext.RemoveElementCommand, Source={x:Reference ElementsItemsControl}}"
+                                                                  CommandParameter="{Binding .}">
+                                                            <MenuItem.Icon>
+                                                                <iconPacks:PackIconMaterial Kind="Close"
+                                                                    Foreground="DarkRed"/>
+                                                            </MenuItem.Icon>
+                                                        </MenuItem>
+                                                    </ContextMenu>
+                                                </Button.ContextMenu>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
             <StackPanel Grid.Row="2"
                         Orientation="Horizontal"
                         Margin="0,30,0,0"

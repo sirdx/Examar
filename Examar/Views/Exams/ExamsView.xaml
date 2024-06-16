@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:Examar.ViewModels"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:root="clr-namespace:Examar"
+             xmlns:utils="clr-namespace:Examar.Utils"
              mc:Ignorable="d"
              d:DesignWidth="1030" d:DesignHeight="720" d:Background="Black"
              d:DataContext="{d:DesignInstance vm:ExamsViewModel, IsDesignTimeCreatable=True}">
@@ -27,78 +28,136 @@
                            FontSize="18"
                            Margin="0,0,0,30" />
             </StackPanel>
-            <StackPanel Grid.Column="0"
-                        Grid.Row="1">
-                <TextBlock Text="LIST"
+            <Grid Grid.Column="0"
+                  Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" 
+                           Text="LIST"
                            Foreground="#CFFFFFFF"
                            FontWeight="Medium"
                            FontSize="10"
                            Margin="0,0,0,5" />
-                <DataGrid AutoGenerateColumns="False"
-                          SelectionMode="Single"
-                          SelectionUnit="FullRow"
-                          BorderThickness="0"
-                          Background="Transparent"
-                          ItemsSource="{Binding Exams}"
-                          SelectedItem="{Binding SelectedExam}"
-                          IsSynchronizedWithCurrentItem="True">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Title"
-                                            Width="*"
-                                            IsReadOnly="True" 
-                                            Binding="{Binding Title}"/>
-                        <DataGridTextColumn Header="File Path"
-                                            Width="*"
-                                            IsReadOnly="True" 
-                                            Binding="{Binding FilePath}"/>
-                    </DataGrid.Columns>
-                    <DataGrid.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="Pin" 
-                                      Command="{Binding PinExamCommand}"
-                                      CommandParameter="{Binding Exams/}">
-                                <MenuItem.Icon>
-                                    <iconPacks:PackIconMaterial Kind="Pin"
-                                                                Foreground="Green"/>
-                                </MenuItem.Icon>
-                            </MenuItem>
-                            <MenuItem Header="Unpin"
-                                      Command="{Binding UnpinExamCommand}"
-                                      CommandParameter="{Binding Exams/}">
-                                <MenuItem.Icon>
-                                    <iconPacks:PackIconMaterial Kind="PinOff"
-                                                                Foreground="Green"/>
-                                </MenuItem.Icon>
-                            </MenuItem>
-                            <MenuItem Header="Edit" 
-                                      Command="{Binding EditExamCommand}"
-                                      CommandParameter="{Binding Exams/}">
-                                <MenuItem.Icon>
-                                    <iconPacks:PackIconMaterial Kind="FileEdit"
-                                                                Foreground="DodgerBlue"/>
-                                </MenuItem.Icon>
-                            </MenuItem>
-                            <MenuItem Header="Delete" 
-                                      Command="{Binding DeleteExamCommand}"
-                                      CommandParameter="{Binding Exams/}">
-                                <MenuItem.Icon>
-                                    <iconPacks:PackIconMaterial Kind="Delete"
-                                                                Foreground="DarkRed"/>
-                                </MenuItem.Icon>
-                            </MenuItem>
-                            <Separator/>
-                            <MenuItem Header="Remove from the list" 
-                                      Command="{Binding RemoveExamFromListCommand}"
-                                      CommandParameter="{Binding Exams/}">
-                                <MenuItem.Icon>
-                                    <iconPacks:PackIconMaterial Kind="Close"
-                                                                Foreground="IndianRed"/>
-                                </MenuItem.Icon>
-                            </MenuItem>
-                        </ContextMenu>
-                    </DataGrid.ContextMenu>
-                </DataGrid>
-            </StackPanel>
+                <ScrollViewer Grid.Row="1" 
+                              VerticalScrollBarVisibility="Auto">
+                    <ItemsControl x:Name="ExamsItemsControl" 
+                                  ItemsSource="{Binding Exams}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="5"
+                                        Background="#0FFFFFFF"
+                                        Padding="15,10"
+                                        Margin="0,0,0,5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0"
+                                                    Orientation="Horizontal">
+                                            <iconPacks:PackIconMaterial Kind="File"
+                                                                        Foreground="DodgerBlue"
+                                                                        Width="18"
+                                                                        VerticalAlignment="Center"
+                                                                        Margin="0,0,15,0"/>
+                                            <StackPanel VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Title}"
+                                                           Foreground="#AFFFFFFF"
+                                                           FontWeight="Bold"
+                                                           FontSize="14"/>
+                                                <TextBlock Text="{Binding FilePath}"
+                                                           Foreground="#8FFFFFFF"
+                                                           FontSize="10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1"
+                                                    Orientation="Horizontal"
+                                                    VerticalAlignment="Center">
+                                            <StackPanel Margin="20,0"
+                                                        HorizontalAlignment="Right"
+                                                        VerticalAlignment="Center">
+                                                <TextBlock Text="Last Modified"
+                                                           Foreground="#AFFFFFFF"
+                                                           FontWeight="Bold"
+                                                           FontSize="12"/>
+                                                <TextBlock Text="01.01.1970 00:00"
+                                                           Foreground="#8FFFFFFF"
+                                                           FontSize="10"/>
+                                            </StackPanel>
+                                            <Button VerticalAlignment="Center"
+                                                    Background="Transparent"
+                                                    BorderThickness="0"
+                                                    Margin="0,0,10,0"
+                                                    Command="{Binding DataContext.EditExamCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                    CommandParameter="{Binding .}">
+                                                <iconPacks:PackIconMaterial Kind="Pencil"
+                                                                            Foreground="White"
+                                                                            Width="18" />
+                                            </Button>
+                                            <Button VerticalAlignment="Center"
+                                                    Background="Transparent"
+                                                    BorderThickness="0"
+                                                    utils:ContextMenuLeftClickBehavior.IsLeftClickEnabled="True"
+                                                    ContextMenuService.IsEnabled="False">
+                                                <iconPacks:PackIconMaterial Kind="DotsVertical"
+                                                                            Foreground="White"
+                                                                            Width="18" />
+                                                <Button.ContextMenu>
+                                                    <ContextMenu>
+                                                        <MenuItem Header="Pin" 
+                                                                  Command="{Binding DataContext.PinExamCommand, Source={x:Reference ExamsItemsControl}}"
+                                                                  CommandParameter="{Binding .}">
+                                                            <MenuItem.Icon>
+                                                                <iconPacks:PackIconMaterial Kind="Pin"
+                                                                                            Foreground="Green"/>
+                                                            </MenuItem.Icon>
+                                                        </MenuItem>
+                                                        <MenuItem Header="Unpin"
+                                                                  Command="{Binding DataContext.UnpinExamCommand, Source={x:Reference ExamsItemsControl}}"
+                                                                  CommandParameter="{Binding .}">
+                                                            <MenuItem.Icon>
+                                                                <iconPacks:PackIconMaterial Kind="PinOff"
+                                                                                            Foreground="Green"/>
+                                                            </MenuItem.Icon>
+                                                        </MenuItem>
+                                                        <MenuItem Header="Edit" 
+                                                                  Command="{Binding DataContext.EditExamCommand, Source={x:Reference ExamsItemsControl}}"
+                                                                  CommandParameter="{Binding .}">
+                                                            <MenuItem.Icon>
+                                                                <iconPacks:PackIconMaterial Kind="FileEdit"
+                                                                                            Foreground="DodgerBlue"/>
+                                                            </MenuItem.Icon>
+                                                        </MenuItem>
+                                                        <MenuItem Header="Delete" 
+                                                                  Command="{Binding DataContext.DeleteExamCommand, Source={x:Reference ExamsItemsControl}}"
+                                                                  CommandParameter="{Binding .}">
+                                                            <MenuItem.Icon>
+                                                                <iconPacks:PackIconMaterial Kind="Delete"
+                                                                                            Foreground="DarkRed"/>
+                                                            </MenuItem.Icon>
+                                                        </MenuItem>
+                                                        <Separator/>
+                                                        <MenuItem Header="Remove from the list" 
+                                                                  Command="{Binding DataContext.RemoveExamFromListCommand, Source={x:Reference ExamsItemsControl}}"
+                                                                  CommandParameter="{Binding .}">
+                                                            <MenuItem.Icon>
+                                                                <iconPacks:PackIconMaterial Kind="Close"
+                                                                                            Foreground="IndianRed"/>
+                                                            </MenuItem.Icon>
+                                                        </MenuItem>
+                                                    </ContextMenu>
+                                                </Button.ContextMenu>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
         </Grid>
     </Border>
 </UserControl>
